@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Error from './Error'
 import shortid from 'shortid'
 
-const Form = () => {
+const Form = ({ addNewExpense }) => {
   const [name, setName] = useState('')
   const [count, setCount] = useState(0)
   const [error, setError] = useState(false)
@@ -22,16 +22,15 @@ const Form = () => {
     const expense = {
       name,
       count,
-      id: shortid.generate()
+      id: shortid.generate(),
     }
 
-    console.log(expense);
-    
-
     //Pasar gasto al componente principal
-
+    addNewExpense(expense)
     //resetear Form
-  }
+    setName('')
+    setCount(0)
+}
 
   return (
     <form onSubmit={handleSubmit}>
