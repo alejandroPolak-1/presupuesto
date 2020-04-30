@@ -1,8 +1,10 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState } from 'react';
+import Error from "./Error"
 
 const Question = () => {
   //Definir State
   const [count, setCount] = useState(0)
+  const [error, setError] = useState(false)
 
   //Función que lee el presupuesto
   const handleChange = (e) => {
@@ -11,17 +13,25 @@ const Question = () => {
 
   //Submit para definir presumuesto
   const handleSubmit = (e) => {
-      e.preventDefault();
+    e.preventDefault()
 
-      //Validar
+    //Validar
+    if (count < 1 || isNaN ( count )) {
+      setError(true)
+      return
+    }
 
-      //Si se pasa la validación
+    //Si se pasa la validación
+    setError(false)
+
+
   }
-        
 
   return (
     <Fragment>
       <h2> Coloca tu presupuesto</h2>
+
+        { error ? <Error message="El Presupuesto es Incorrect" /> : null}
 
       <form onSubmit={handleSubmit}>
         <input
