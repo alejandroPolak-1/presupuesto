@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Question from './components/Question'
 import Form from './components/Form'
 import List from './components/List'
+import ControlAmount from './components/ControlAmount'
 
 function App() {
   //definiendo el State
@@ -11,13 +12,9 @@ function App() {
   const [expenses, setExpenses] = useState([])
 
   //Cuando agregamos un nuevo Gasto
-  const addNewExpense = expense => {
-    setExpenses([
-      ...expenses,
-      expense
-    ])
+  const addNewExpense = (expense) => {
+    setExpenses([...expenses, expense])
   }
-
 
   return (
     <div className="container">
@@ -34,17 +31,16 @@ function App() {
           ) : (
             <div className="row">
               <div className="one-half column">
-                <Form 
-                addNewExpense={addNewExpense}
-                />
+                <Form addNewExpense={addNewExpense} />
               </div>
               <div className="one-half column">
-                <List
-                  expenses= {expenses}
+                <List expenses={expenses} />
+                <ControlAmount 
+                amount= {amount}
+                residual={residual}
                 />
-                </div>
+              </div>
             </div>
-
           )}
         </div>
       </header>
