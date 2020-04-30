@@ -1,12 +1,17 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import Question from './components/Question'
 
 function App() {
   return (
-    <Fragment className="container">
+    <div className="container">
       <header>
-        <h1>Presupuesto</h1>
+        <h1>Gasto Semanal</h1>
+
+        <div className="contenido-principal contenido">
+          <Question />
+        </div>
       </header>
-    </Fragment>
+    </div>
   )
 }
 
