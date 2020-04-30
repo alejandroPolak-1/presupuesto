@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from 'react';
-import Error from "./Error"
+import React, { Fragment, useState } from 'react'
+import Error from './Error'
 
-const Question = () => {
+const Question = ({ setAmount, setResidual }) => {
   //Definir State
   const [count, setCount] = useState(0)
   const [error, setError] = useState(false)
@@ -16,22 +16,22 @@ const Question = () => {
     e.preventDefault()
 
     //Validar
-    if (count < 1 || isNaN ( count )) {
+    if (count < 1 || isNaN(count)) {
       setError(true)
       return
     }
 
     //Si se pasa la validación
     setError(false)
-
-
+    setAmount(count)
+    setResidual(count)
   }
 
   return (
     <Fragment>
       <h2> Coloca tu presupuesto</h2>
 
-        { error ? <Error message="El Presupuesto es Incorrect" /> : null}
+      {error ? <Error message="El Presupuesto es Incorrect" /> : null}
 
       <form onSubmit={handleSubmit}>
         <input
