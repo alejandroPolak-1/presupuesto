@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import PropTypes from 'prop-types'
 import Error from './Error'
 
 const Question = ({ setAmount, setResidual, setShowquestion }) => {
@@ -49,6 +50,13 @@ const Question = ({ setAmount, setResidual, setShowquestion }) => {
       </form>
     </Fragment>
   )
+}
+
+//Documentando
+Question.propTypes={
+  setAmount: PropTypes.func.isRequired, 
+  setResidual: PropTypes.func.isRequired, 
+  setShowquestion: PropTypes.func.isRequired
 }
 
 export default Question
