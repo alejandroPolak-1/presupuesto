@@ -21,7 +21,9 @@ function App() {
       //Agrega el nuevo presupuesto
       setExpenses([...expenses, expense])
 
-
+      //Resta del Presupuesto actual
+      const residualAmount = residual - expense.count
+      setResidual(residualAmount)
 
 
     }
