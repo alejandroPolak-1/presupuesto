@@ -17,19 +17,16 @@ function App() {
   //UseEffect que actualiza el restante
   useEffect(() => {
     if (createxpense) {
-
       //Agrega el nuevo presupuesto
       setExpenses([...expenses, expense])
 
       //Resta del Presupuesto actual
       const residualAmount = residual - expense.count
       setResidual(residualAmount)
-
-
     }
     //Resetar a false(muy importante)
     setCreateExpense(false)
-  }, [expense])
+  }, [expense, setExpense, expenses, residual])
 
   return (
     <div className="container">
