@@ -2,34 +2,37 @@ import React, { useState } from 'react'
 import Error from './Error'
 import shortid from 'shortid'
 
-const Form = ({ addNewExpense }) => {
-  const [name, setName] = useState('')
-  const [count, setCount] = useState(0)
-  const [error, setError] = useState(false)
+const Form = ({ setExpense, setCreateExpense }) => {
+    const [name, setName] = useState('')
+    const [count, setCount] = useState(0)
+    const [error, setError] = useState(false)
 
-  //Cuando el usuario agrega un gasto
-  const handleSubmit = (e) => {
-    e.preventDefault()
+    //Cuando el usuario agrega un gasto
+    const handleSubmit = (e) => {
+      e.preventDefault()
 
-    //Validar
-    if (count < 1 || isNaN(count) || name.trim() === '') {
-      setError(true)
-      return
-    }
-    setError(false)
+      //Validar
+      if (count < 1 || isNaN(count) || name.trim() === '') {
+        setError(true)
+        return
+      }
+      setError(false)
 
-    //Construir el gasto
-    const expense = {
-      name,
-      count,
-      id: shortid.generate(),
-    }
+      //Construir el gasto
+      const expense = {
+        name,
+        count,
+        id: shortid.generate(),
+      }
 
-    //Pasar gasto al componente principal
-    addNewExpense(expense)
-    //resetear Form
-    setName('')
-    setCount(0)
+      //Pasar gasto al componente principal
+      setExpense(expense)
+      setCreateExpense(true)
+
+
+      //resetear Form
+      setName('')
+      setCount(0)
 }
 
   return (

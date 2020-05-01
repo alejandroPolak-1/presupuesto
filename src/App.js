@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react'
 import Question from './components/Question'
 import Form from './components/Form'
 import List from './components/List'
@@ -10,11 +11,23 @@ function App() {
   const [residual, setResidual] = useState(0)
   const [showquestion, setShowquestion] = useState(true)
   const [expenses, setExpenses] = useState([])
+  const [expense, setExpense] = useState({})
+  const [createxpense, setCreateExpense] = useState(false)
 
-  //Cuando agregamos un nuevo Gasto
-  const addNewExpense = (expense) => {
-    setExpenses([...expenses, expense])
-  }
+  //UseEffect que actualiza el restante
+  useEffect(() => {
+    if (createxpense) {
+
+      //Agrega el nuevo presupuesto
+      setExpenses([...expenses, expense])
+
+
+
+
+    }
+    //Resetar a false(muy importante)
+    setCreateExpense(false)
+  }, [expense])
 
   return (
     <div className="container">
@@ -31,14 +44,14 @@ function App() {
           ) : (
             <div className="row">
               <div className="one-half column">
-                <Form addNewExpense={addNewExpense} />
+                <Form
+                  setExpense={setExpense}
+                  setCreateExpense={setCreateExpense}
+                />
               </div>
               <div className="one-half column">
                 <List expenses={expenses} />
-                <ControlAmount 
-                amount= {amount}
-                residual={residual}
-                />
+                <ControlAmount amount={amount} residual={residual} />
               </div>
             </div>
           )}
